@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="jquery.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css" href="layout.css">
+<script src="socket.io/socket.io.js"></script>
+<script src="xuly.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+        <div class="row">
+                <div class="col-sm-3 p-3 ">
+                        <ul class="list-group list-group-flush">
+                                <li class="list-group-item ">
+                                    <div >
+                                            <i class="fa fa-home iconh"></i>
+                                    </div>
+                                    <div>
+                                    <i class="fas fa-heart"></i>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div >
+                                            <i class="fas fa-comments"> Số người trò chuyện</i>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                        <i class="fas fa-wrench my-3">  Tuỳ chỉnh</i><br>
+                                        <i class="fas fa-question-circle">   Nội quy</i>
+                                </li>
+                                <li class="list-group-item">
+                                        
+                                        <a href="/dangxuat" class="btn btn-info  butdx" role="button ">Đăng Xuất</a>
+                                        
+                                </li>
+                                
+                        </ul>
+                </div>
+                <div class="col-sm-9  chat-vs1 ">
+                        
+                    <div class="chat-vs p-2 bg-primary text-white">
+                        <p>chat với người lạ</p>
+                    </div>
+                    <div class="nhap-chat"></div>
+                    <div class="type_msg">
+                            <div class="input_msg_write">
+                                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                                    <button type="button" class="btn btn-outline-dark but2">Send</button>
+                                    
+                              
+                            
+                    </div>
+                        </div>
+                    <div class="bg-white ">
+                            <img src="image/logo.png" class="mx-auto d-block my-5" style="max-width:200px;">
+                            <h2 class="text-center p-4">Xin Chào </h2>
+                            <p class="text-center "> Nhập tên bên dưới để bắt đầu chat </p>
+                            <div id="khung-name">
+                           
+                            <input type="text"  class="form-control  name1" id="name" placeholder="name" name="name1">
+                            </div>   
+                            <button type="button " class="btn btn-outline-primary center-block but1 ">Bắt đầu chat</button>
+                    </div>
+                </div>
+        </div>
+</div>
+
+</body>
+</html>

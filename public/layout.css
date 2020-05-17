@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.center-block { 
+    margin-left:auto; 
+    margin-right:auto; 
+    display:block; 
+}
+.form-chat{
+    border:1px solid red;
+    padding: 15px;
+    max-width:400px;
+    margin-left:auto; 
+    margin-right:auto; 
+    display:block; 
+}
+
+.type_msg {
+    
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.input_msg_write .form-control {
+    width: 55%;
+    float: left;
+    margin: 5px;
+    height: 40px;
+  }
+  .input_msg_write .btn{ 
+    width: 15%;
+    float: left;
+    margin: 5px;
+  }
+  
+  .butdx{
+      margin-top: 15px;
+
+  }
+  #khung-name{
+    padding: 15px;
+    max-width:400px;
+    margin-left:auto; 
+    margin-right:auto; 
+    display:block; 
+  }
+  
+  .nhap-chat .bg-primary{
+      border-radius :14px 14px 0px 14px;
+  }
+  .nhap-chat .bg-secondary{
+    border-radius :14px 14px 14px 0px;
+}
+.chat-vs1{
+    max-height: 780px;
+    display: flex; /*added*/
+  flex-direction: column; /*added*/
+}
+.nhap-chat {
+    margin-bottom:15px;
+    overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1; /* added */
+}
+
