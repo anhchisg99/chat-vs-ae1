@@ -5,14 +5,14 @@ var bodyParser = require("body-parser");
 var cookieParser = require('cookie-parser');
 var shortid = require('shortid');
 var auth = require('./controllers/auth.controller');
-var  db = require('./db');
-// var mongoose = require('mongoose');
-var user = require('./models/user.model');
+// var  db = require('./db');
+ var mongoose = require('mongoose');
+var User = require('./models/user.model');
 
 
 const PORT = 3000 || process.env.PORT;
 
-// mongoose.connect('mongodb://localhost:27017/express-demo');
+ mongoose.connect(process.env.MONGODB_URI);
 
 app.use(express.static("public"));
 app.set("view engine","ejs");
@@ -79,12 +79,31 @@ app.get('/dangky',function(req,res){
     res.render("dangky")});
 app.post('/dangky',function(req,res){
     // append id 
-    req.body.id = shortid.generate();
+    var name = req.body.name;
+    var pass = req.body.pass;
+
+    var newuser = new User();
+    newuser.name = name;
+    newuser.pass = pass;
+    newuser.save(function(err, savedUser){
+        if(err){
+            console.log(err);
+            
+         res.send('error');
+
+        }else{
+            console.log(savedUser);
+            res.redirect('/');
+        }
+         
+
+    });
+
     
     // Add a post
-db.get('user').push(req.body).write();
 
-    res.redirect('/');
+
+    
 });
 
 app.post('/',function(req,res){
@@ -93,56 +112,72 @@ app.post('/',function(req,res){
     var z = req.body.pass;
     var errors = [];
 
+//   var h =   db.get('user')
+//   .find({ name : y })
+//   .value()
 
+User.findOne({name:y,pass:z},function(err,user){
+ if(err){
+     console.log(err);
+     return res.status(500).send();
+ }
+ if(!user){
+     return res.status(404).send();
+ }
+ if(user){
+    console.log("pass dung");
+    var randomNumber=Math.random().toString();
+    randomNumber=randomNumber.substring(2,randomNumber.length);
+    res.cookie('cookieName',randomNumber, { maxAge: 900000, httpOnly: true });
+    console.log('cookie created successfully');
+    res.cookie('userId',randomNumber);
     
-
-  var h =   db.get('user')
-  .find({ name : y })
-  .value()
-
-
-
-console.log(h);
-
-
-  if (typeof h == 'undefined'){
-    console.log("Biến variable không được định nghĩa");
-    return;
+    
+    
+     res.redirect('/dangnhap');
+    
 }
+});
+
+
+
+
   
-   var o = h.name;
-   var i = h.pass;
+  
+//    var o = h.name;
+//    var i = h.pass;
 
 //   console.log(i);
 //   console.log(y);
 //   console.log(z);
 
-  if(typeof h == 'undefined'){
-      console.log("bien chua dinh nghia");
-      res.redirect('/');
+//   if(typeof h == 'undefined'){
+//       console.log("bien chua dinh nghia");
+//       res.redirect('/');
 
-      return;
-  }else{
-      console.log("tai khoan dung");
-      if(i == z){
-          console.log("pass dung");
+//       return;
+//   }else{
+//       console.log("tai khoan dung");
+//       if(i == z){
+//           console.log("pass dung");
           
-          res.cookie('userId',h.id);
+//           res.cookie('userId',h.id);
           
           
           
-          res.redirect('/dangnhap');
+//           res.redirect('/dangnhap');
 
-      }else{
-          console.log("pass sai");
+//       }else{
+//           console.log("pass sai");
           
          
          
         
-      }
+//       }
 
-  }
+//   }
  
+// });
 });
 app.get('/chovui',function(req,res){
     res.send("dangnhap")});
